@@ -1,2 +1,2 @@
 # MyBlog
-A blog
+A blog website.
