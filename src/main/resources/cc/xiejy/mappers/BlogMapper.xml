@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.xiejy.dao.BlogDao">
+
+    <resultMap type="Blog" id="BlogResult">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="summary" column="summary"/>
+        <result property="releaseDate" column="releaseDate"/>
+        <result property="click" column="click"/>
+        <result property="reply" column="reply"/>
+        <result property="content" column="content"/>
+        <result property="keyword" column="keyword"/>
+
+        <association property="blogType" column="typeId" select="cc.xiejy.dao.BlogTypeDao.getBlogTypeById"/>
+    </resultMap>
+
+    <select id="getBlogListGroupByDate" resultMap="BlogResult">
+        SELECT DATE_FORMAT(releaseDate,'%Y年%m月') AS releaseDateStr,COUNT(*) AS blogCountForSameDate FROM t_blog GROUP BY DATE_FORMAT(releaseDate,'%Y年%m月') ORDER BY DATE_FORMAT(releaseDate,'%Y年%m月') DESC
+    </select>
+
+    <select id="getBlogList" parameterType="Map" resultMap="BlogResult">
+        SELECT * FROM t_blog
+        <where>
+            <if test="typeId!=null and typeId!='' ">
+                and typeId=#{typeId}
+            </if>
+            <if test="releaseDateStr!=null and releaseDateStr!='' ">
+                and DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
+            </if>
+        </where>
+        ORDER BY releaseDate DESC
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getTotalCount" parameterType="Map" resultType="Integer">
+        SELECT COUNT(*) FROM t_blog
+        <where>
+            <if test="typeId!=null and typeId!='' ">
+                and typeId=#{typeId}
+            </if>
+            <if test="releaseDateStr!=null and releaseDateStr!='' ">
+                and DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
+            </if>
+        </where>
+    </select>
+</mapper>

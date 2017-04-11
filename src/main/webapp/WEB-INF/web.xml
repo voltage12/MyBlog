@@ -13,9 +13,16 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
     <!-- Spring监听器 -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>cc.xiejy.service.impl.InitListener</listener-class>
     </listener>
     <!-- 编码过滤器 -->
     <filter>
