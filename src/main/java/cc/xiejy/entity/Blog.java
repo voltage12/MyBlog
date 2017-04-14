@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class Blog {
 
-    private int id;
+    private Integer id;
     private String title;
     private String summary;
     private Date releaseDate;
     private String releaseDateStr;
-    private int click;
-    private int reply;
+    private Integer click;
+    private Integer reply;
     private String content;
     private String keyword;
 
@@ -32,11 +32,11 @@ public class Blog {
         this.imageList = imageList;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,19 +72,19 @@ public class Blog {
         this.releaseDateStr = releaseDateStr;
     }
 
-    public int getClick() {
+    public Integer getClick() {
         return click;
     }
 
-    public void setClick(int click) {
+    public void setClick(Integer click) {
         this.click = click;
     }
 
-    public int getReply() {
+    public Integer getReply() {
         return reply;
     }
 
-    public void setReply(int reply) {
+    public void setReply(Integer reply) {
         this.reply = reply;
     }
 
@@ -112,11 +112,11 @@ public class Blog {
         this.keyword = keyword;
     }
 
-    public int getBlogCountForSameDate() {
+    public Integer getBlogCountForSameDate() {
         return blogCountForSameDate;
     }
 
-    public void setBlogCountForSameDate(int blogCountForSameDate) {
+    public void setBlogCountForSameDate(Integer blogCountForSameDate) {
         this.blogCountForSameDate = blogCountForSameDate;
     }
 }

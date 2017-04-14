@@ -1,12 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="row">
-    <div class="col-md-6" style="padding-top: 40px;padding-left: 40px">
+    <div class="col-md-4" style="padding-top: 40px;padding-left: 5%">
         <scan>
             毕业设计-博客系统:<a href="https://github.com/xiejiny/MyBlog">源码在这</a>
         </scan>
     </div>
-    <div class="col-md-6" style="padding-top: 40px;text-align: right;padding-right: 40px">
+    <div class="col-md-4" style="padding-top: 40px;text-align: center">
+        <scan>
+            <a href="${pageContext.request.contextPath}">回到首页</a>
+        </scan>
+    </div>
+    <div class="col-md-4" style="padding-top: 40px;text-align: right;padding-right: 5%">
         <scan>
             <a href="https://github.com/xiejiny/MyBlog" data-toggle="modal" data-target="#myModa2">关于本站</a>
             <%-- 下面是模态对话框 --%>

@@ -5,9 +5,10 @@
 <c:forEach items="${blogList}" var="blog">
     <div class="mydata_list">
         <div class="data_list_title">
-            <span class="title"><a href="#">${blog.title}</a></span>
+            <span class="title"><a
+                    href="${pageContext.request.contextPath}/blog/articles/${blog.id}.html">${blog.title}</a></span>
             <span class="date">
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/blog/articles/${blog.id}.html">
                     <fmt:formatDate value="${blog.releaseDate}" type="date" pattern="yyyy年MM月dd日"/>
                 </a>
             </span>
@@ -19,7 +20,7 @@
                     <span class="summary">摘要${blog.summary}。。。</span>
                     <span class="img">
                         <c:forEach items="${blog.imageList}" var="image">
-                            <a href="#">${image}</a>
+                            <a href="${pageContext.request.contextPath}/blog/articles/${blog.id}.html">${image}</a>
                             &nbsp;&nbsp;
                         </c:forEach>
                     </span>
@@ -31,4 +32,10 @@
         </div>
     </div>
 </c:forEach>
+<nav style="text-align: center;padding-top: 30px" aria-label="Page navigation">
+    <ul class="pagination">
+        <%--<li><a href="${pageContext.request.contextPath}/index.html">主页</a></li>--%>
+        ${pageCode}
+    </ul>
+</nav>
 

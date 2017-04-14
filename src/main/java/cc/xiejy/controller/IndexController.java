@@ -67,7 +67,8 @@ public class IndexController {
             Elements jpgs = document.select("img[src$=.jpg]");
             for (int i = 0; i < jpgs.size(); i++) {
                 Element jpg = jpgs.get(i);
-                imageList.add(jpg.toString().replaceFirst("/", request.getContextPath() + "/"));
+                imageList.add(jpg.toString());
+                //imageList.add(jpg.toString().replaceFirst("/", request.getContextPath() + "/"));
                 if (i == 2) {
                     break;
                 }

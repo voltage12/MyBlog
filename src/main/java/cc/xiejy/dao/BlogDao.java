@@ -15,4 +15,12 @@ public interface BlogDao {
     List<Blog> getBlogList(Map<String, Object> map);
 
     int getTotalCount(Map<String, Object> map);
+
+    Blog getById(Integer id);
+
+    int update(Blog blog);
+
+    Blog getLastBlog(Integer id);
+
+    Blog getNextBlog(Integer id);
 }

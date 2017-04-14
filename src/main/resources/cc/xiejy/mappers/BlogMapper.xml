@@ -5,7 +5,7 @@
 <mapper namespace="cc.xiejy.dao.BlogDao">
 
     <resultMap type="Blog" id="BlogResult">
-        <result property="id" column="id"/>
+        <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="summary" column="summary"/>
         <result property="releaseDate" column="releaseDate"/>
@@ -47,5 +47,30 @@
                 and DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
             </if>
         </where>
+    </select>
+
+    <select id="getById" parameterType="Integer" resultMap="BlogResult">
+        SELECT * FROM t_blog WHERE id=#{id}
+    </select>
+
+    <update id="update" parameterType="Blog">
+        UPDATE t_blog
+        <set>
+            <if test="click!=null">
+                click=#{click},
+            </if>
+            <if test="reply!=null">
+                reply=#{reply},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
+        SELECT * FROM t_blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1;
+    </select>
+
+    <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
+        SELECT * FROM t_blog WHERE id&gt;#{id} ORDER BY id ASC LIMIT 1;
     </select>
 </mapper>

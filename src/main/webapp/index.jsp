@@ -12,6 +12,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/mycss.css">
     <script src="${pageContext.request.contextPath}/static/bootstrap3/js/jquery-1.11.2.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/bootstrap3/js/bootstrap.min.js"></script>
+    <%-- 代码高亮所需js库 --%>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/static/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/static/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
 </head>
 <body>
 <div class="container-fluid">
@@ -20,12 +28,7 @@
         <div class="col-md-9" style="padding-right: 0px;padding-left: 0px;background-color: #E5E5E5">
             <%--<jsp:include page="blog/${mainPage}"></jsp:include>--%>
             <jsp:include page="${mainPage}"></jsp:include>
-            <nav style="text-align: center;padding-top: 30px" aria-label="Page navigation">
-                <ul class="pagination">
-                    <li><a href="${pageContext.request.contextPath}/index.html">主页</a></li>
-                    ${pageCode}
-                    </ul>
-            </nav>
+
             <jsp:include page="common/foot.jsp"></jsp:include>
         </div>
     </div>

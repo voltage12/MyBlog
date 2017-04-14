@@ -15,4 +15,12 @@ public interface BlogService {
     List<Blog> getBlogList(Map<String, Object> map);
 
     int getTotalCount(Map<String, Object> map);
+
+    Blog getById(int id);
+
+    int update(Blog blog);
+
+    Blog getLastBlog(Integer id);
+
+    Blog getNextBlog(Integer id);
 }

@@ -4,16 +4,16 @@ package cc.xiejy.entity;
  * Created by xie on 2017/4/11 0011.
  */
 public class BlogType {
-    private int id;
+    private Integer id;
     private String typeName;
-    private int orderNum;
-    private int blogCount;
+    private Integer orderNum;
+    private Integer blogCount;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -25,7 +25,7 @@ public class BlogType {
         this.typeName = typeName;
     }
 
-    public int getOrderNum() {
+    public Integer getOrderNum() {
         return orderNum;
     }
 
@@ -33,7 +33,7 @@ public class BlogType {
         this.orderNum = orderNum;
     }
 
-    public int getBlogCount() {
+    public Integer getBlogCount() {
         return blogCount;
     }
 
