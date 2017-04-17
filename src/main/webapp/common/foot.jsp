@@ -8,7 +8,7 @@
     </div>
     <div class="col-md-4" style="padding-top: 40px;text-align: center">
         <scan>
-            <a href="${pageContext.request.contextPath}">回到首页</a>
+            <a href="${pageContext.request.contextPath}">回到首页</a>/<a href="#top" target="_self">返回顶部</a>
         </scan>
     </div>
     <div class="col-md-4" style="padding-top: 40px;text-align: right;padding-right: 5%">

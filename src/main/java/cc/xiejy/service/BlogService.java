@@ -23,4 +23,8 @@ public interface BlogService {
     Blog getLastBlog(Integer id);
 
     Blog getNextBlog(Integer id);
+
+    Integer add(Blog blog);
+
+    Integer deleteBlogById(Integer id);
 }

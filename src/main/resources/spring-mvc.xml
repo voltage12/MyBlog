@@ -27,6 +27,14 @@
 
     </bean>
 
+    <!--<mvc:interceptors>-->
+    <!--<mvc:interceptor>-->
+    <!--<mvc:mapping path="/admin/*.do"/>-->
+    <!--&lt;!&ndash; 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 &ndash;&gt;-->
+    <!--<bean class="cc.xiejy.service.impl.AdminFilter"/>-->
+    <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
     <!-- 使用注解的包，包括子集 -->
     <context:component-scan base-package="cc.xiejy.controller"/>
 </beans>  

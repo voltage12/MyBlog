@@ -30,7 +30,7 @@ public class UserController {
         if (loginUser != null) {
             if (loginUser.getPassword().equals(CryptographyUtil.md5(user.getPassword()))) {
                 request.getSession().setAttribute("currentUser", loginUser);
-                return "redirect:/admin/main.jsp";
+                return "redirect:/admin/index.html";
             }
         }
         request.setAttribute("errorInfo", "用户名或密码错误");

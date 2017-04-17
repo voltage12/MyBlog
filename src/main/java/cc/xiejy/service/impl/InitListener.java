@@ -29,8 +29,6 @@ public class InitListener implements ServletContextListener, ApplicationContextA
         ServletContext application = servletContextEvent.getServletContext();
         UserService userService = (UserService) applicationContext.getBean("userService");
         User user = userService.getByUserName("xiejy");
-        if (user != null) {
-        }
         user.setPassword(null);
         application.setAttribute("user", user);
 

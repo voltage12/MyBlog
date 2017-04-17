@@ -39,7 +39,6 @@ public class CommentController {
         newComment.setUserIp(request.getRemoteAddr());
 
         JSONObject result = new JSONObject();
-
         int resultNum = commentService.add(newComment);
         if (resultNum == 0) {
             result.put("success", false);
@@ -48,5 +47,6 @@ public class CommentController {
             result.put("success", true);
         }
         ResponseUtil.write(response, result.toJSONString());
+        return;
     }
 }

@@ -33,6 +33,7 @@
                     alert(result.errorInfo);
                 }
             }, "json");
+            $("#content").val("");
         }
     }
 </script>
