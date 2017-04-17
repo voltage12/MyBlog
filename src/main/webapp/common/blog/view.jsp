@@ -28,7 +28,7 @@
                 'blogId': '${blog.id}'
             }, function (result) {
                 if (result.success) {
-                    alert("评论已提成成功，审核通过后显示！");
+                    alert("评论已提成成功，刷新后显示！");
                 } else {
                     alert(result.errorInfo);
                 }

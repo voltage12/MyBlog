@@ -27,6 +27,6 @@
     </select>
 
     <insert id="add" parameterType="Comment">
-        INSERT INTO t_comment VALUES(NULL ,#{userIp},#{content},now(),0,#{blog.id})
+        INSERT INTO t_comment VALUES(NULL ,#{userIp},#{content},now(),1,#{blog.id})
     </insert>
 </mapper> 

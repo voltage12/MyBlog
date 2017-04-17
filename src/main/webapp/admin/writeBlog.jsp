@@ -12,7 +12,7 @@
         var title = $("#title").val();
         var blogTypeId = $("#blogTypeId").val();
         var content = UE.getEditor('editor').getContent();
-
+        var id = $("#id");
         if (title == null || title == '') {
             alert("请输入标题！");
         } else if (blogTypeId == null || blogTypeId == '') {
@@ -22,7 +22,7 @@
         } else {
             $.post("${pageContext.request.contextPath}/admin/blog/add.do", {
                 'title': title, 'blogType.id': blogTypeId,
-                'content': content, 'summary': UE.getEditor('editor').getContentTxt().substr(0, 150)
+                'content': content, 'id': '${blog.id}', 'summary': UE.getEditor('editor').getContentTxt().substr(0, 150)
             }, function (result) {
                 if (result.success) {
                     alert("博客发布成功！");
@@ -49,16 +49,25 @@
             </div>
             <div class="panel-body">
                 <form>
+                    <input hidden="hidden" id="id" name="id" value="${blog.id}"/>
                     <div class="form-group" style="width: 400px">
                         <label>博客标题</label>
-                        <input id="title" name="title" type="text" class="form-control" placeholder="请输入博客标题">
+                        <input id="title" name="title" type="text" class="form-control" placeholder="请输入博客标题"
+                               value="${blog.title}">
                     </div>
                     <div class="form-group" style="width: 400px">
                         <label>博客类别</label>
                         <select class="form-control" name="blogTypeId" id="blogTypeId">
                             <option value="">请选择博客类别。。。</option>
                             <c:forEach var="blogType" items="${blogTypeList}">
-                                <option value="${blogType.id}">${blogType.typeName}</option>
+                                <c:choose>
+                                    <c:when test="${blogType.id == blog.blogType.id}">
+                                        <option value="${blogType.id}" selected="selected">${blogType.typeName}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${blogType.id}">${blogType.typeName}</option>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:forEach>
                         </select>
                     </div>
@@ -68,6 +77,21 @@
                         </script>
                         <script type="text/javascript">
                             var ue = UE.getEditor('editor', {initialFrameHeight: 500});
+                            <c:if test="${!empty blog}">
+                            ue.addListener("ready", function () {
+                                // 通过ajax请求数据
+                                UE.ajax.request("${pageContext.request.contextPath}/admin/blog/getContent.do",
+                                        {
+                                            method: "post",
+                                            async: false,
+                                            data: {"id": "${blog.id}"},
+                                            onsuccess: function (result) {
+                                                result = eval("(" + result.responseText + ")");
+                                                UE.getEditor('editor').setContent(result.content);
+                                            }
+                                        });
+                            });
+                            </c:if>
                         </script>
                     </div>
                     <div class="form-group">
@@ -79,3 +103,5 @@
         </div>
     </div>
 </div>
+
+

@@ -17,7 +17,7 @@
         <div class="datas">
             <ul>
                 <li style="margin-bottom: 30px">
-                    <span class="summary">摘要${blog.summary}。。。</span>
+                    <span class="summary">摘要: ${blog.summary}。。。</span>
                     <span class="img">
                         <c:forEach items="${blog.imageList}" var="image">
                             <a href="${pageContext.request.contextPath}/blog/articles/${blog.id}.html">${image}</a>

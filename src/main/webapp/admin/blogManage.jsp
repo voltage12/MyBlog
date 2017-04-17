@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<script>
+<script type="text/javascript">
     function getBlogList(var1) {
         $.post("${pageContext.request.contextPath}/admin/blog/getList.do", {"page": var1}, function (result) {
             $("#tableBody").empty();
@@ -18,7 +18,10 @@
                 var td2 = document.createElement("td");
                 td2.innerText = result[i].id;
                 var td3 = document.createElement("td");
-                td3.innerText = result[i].title;
+                var target = document.createElement("a");
+                target.innerText = result[i].title;
+                target.setAttribute("href", "${pageContext.request.contextPath}/admin/index.html?targetPage=writeBlog&blogId=" + result[i].id);
+                td3.appendChild(target);
                 var td4 = document.createElement("td");
                 td4.innerText = result[i].releaseDate;
                 var td5 = document.createElement("td");
@@ -44,6 +47,7 @@
 //        alert(id_array);
         var idstr = id_array.join(',');
         $.post("${pageContext.request.contextPath}/admin/blog/delete.do", {"selectId": idstr}, function (result) {
+            result = $.parseJSON(result);
             if (result.success) {
                 alert("删除成功");
                 getBlogList(1);

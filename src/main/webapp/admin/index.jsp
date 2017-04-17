@@ -52,49 +52,37 @@
                                     <li>
                                         <a href="${pageContext.request.contextPath}/admin/index.html?targetPage=writeBlog">写博客</a>
                                     </li>
-                                    <li><a href="#">博客信息管理</a></li>
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/admin/index.html?targetPage=blogManage">博客信息管理</a>
+                                    </li>
                                 </ul>
                             </li>
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">评论管理<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">评论审核</a></li>
-                                    <li><a href="#">评论信息管理</a></li>
-                                </ul>
-                            </li>
+                            <%--<li class="dropdown">--%>
+                            <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"--%>
+                            <%--aria-haspopup="true" aria-expanded="false">评论管理<span class="caret"></span></a>--%>
+                            <%--<ul class="dropdown-menu">--%>
+                            <%--<li><a href="#">评论审核</a></li>--%>
+                            <%--<li><a href="#">评论信息管理</a></li>--%>
+                            <%--</ul>--%>
+                            <%--</li>--%>
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
+                            <%--<li class="dropdown">--%>
+                            <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"--%>
+                            <%--aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>--%>
+                            <%--<ul class="dropdown-menu">--%>
+                            <%--<li><a href="#">Action</a></li>--%>
+                            <%--<li><a href="#">Another action</a></li>--%>
+                            <%--<li><a href="#">Something else here</a></li>--%>
+                            <%--<li role="separator" class="divider"></li>--%>
+                            <%--<li><a href="#">Separated link</a></li>--%>
+                            <%--<li role="separator" class="divider"></li>--%>
+                            <%--<li><a href="#">One more separated link</a></li>--%>
+                            <%--</ul>--%>
+                            <%--</li>--%>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">退出系统</a></li>
+                            <li><a href="${pageContext.request.contextPath}/index.html">退出系统</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

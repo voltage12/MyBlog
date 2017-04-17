@@ -32,8 +32,14 @@ public class BlogAdminController {
 
     @RequestMapping("/add")
     public void addBlog(Blog blog, HttpServletResponse response) throws Exception {
-        int resultNum = blogService.add(blog);
+        int resultNum;
         JSONObject result = new JSONObject();
+        if (blog.getId() != null) {
+            resultNum = blogService.update(blog);
+        } else {
+            resultNum = blogService.add(blog);
+
+        }
         if (resultNum == 0) {
             result.put("success", false);
         } else {
@@ -57,6 +63,16 @@ public class BlogAdminController {
             }
         }
         ResponseUtil.write(response, result.toJSONString());
+    }
+
+    @RequestMapping("/getContent")
+    public void getContentById(@RequestParam(value = "id") String id, HttpServletResponse response) throws Exception {
+        Blog bLog = blogService.getById(Integer.parseInt(id));
+        JSONObject result = new JSONObject();
+        if (bLog != null) {
+            result.put("content", bLog.getContent());
+            ResponseUtil.write(response, result.toJSONString());
+        }
     }
 
     @RequestMapping("/getList")
