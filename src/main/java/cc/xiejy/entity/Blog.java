@@ -19,6 +19,9 @@ public class Blog {
     private String content;
     private String keyword;
 
+    /**
+     * 在表中对应的列为typeId，查询时调用BlogTypeDao的getBlogTypeById方法
+     */
     private BlogType blogType;
 
     private List<String> imageList = new LinkedList<>();

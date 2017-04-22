@@ -7,6 +7,11 @@ package cc.xiejy.util;
  */
 public class PageUtil {
 
+    public static int getTotalPage(int totalNum, int currentPage, int pageSize) {
+        int totalPage = totalNum % pageSize == 0 ? totalNum / pageSize : totalNum / pageSize + 1;
+        return totalPage;
+    }
+
     /**
      * 生成分页代码
      *

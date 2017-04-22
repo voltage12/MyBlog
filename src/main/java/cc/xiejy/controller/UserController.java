@@ -36,4 +36,10 @@ public class UserController {
         request.setAttribute("errorInfo", "用户名或密码错误");
         return "login";
     }
+
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("currentUser");
+        return "redirect:/";
+    }
 }

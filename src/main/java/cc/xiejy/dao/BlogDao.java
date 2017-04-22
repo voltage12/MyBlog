@@ -26,5 +26,7 @@ public interface BlogDao {
 
     Integer add(Blog blog);
 
+    Integer getCountByTypeId(Integer typeId);
+
     Integer deleteBlogById(Integer id);
 }

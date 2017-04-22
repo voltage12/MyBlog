@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--<c:if test="${empty currentUser}">--%>
-<%--<c:redirect url="/login.jsp"></c:redirect>--%>
-<%--</c:if>--%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,7 +36,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">导航栏</a>
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/index.html">导航栏</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -50,46 +47,26 @@
                                    aria-haspopup="true" aria-expanded="false">博客管理<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/admin/index.html?targetPage=writeBlog">写博客</a>
+                                        <a href="${pageContext.request.contextPath}/admin/blog/writeBlog.html">写博客</a>
                                     </li>
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/admin/index.html?targetPage=blogManage">博客信息管理</a>
+                                        <a href="${pageContext.request.contextPath}/admin/blog/blogManage.html">博客信息管理</a>
                                     </li>
                                 </ul>
                             </li>
-
-                            <%--<li class="dropdown">--%>
-                            <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"--%>
-                            <%--aria-haspopup="true" aria-expanded="false">评论管理<span class="caret"></span></a>--%>
-                            <%--<ul class="dropdown-menu">--%>
-                            <%--<li><a href="#">评论审核</a></li>--%>
-                            <%--<li><a href="#">评论信息管理</a></li>--%>
-                            <%--</ul>--%>
-                            <%--</li>--%>
-
-                            <%--<li class="dropdown">--%>
-                            <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"--%>
-                            <%--aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>--%>
-                            <%--<ul class="dropdown-menu">--%>
-                            <%--<li><a href="#">Action</a></li>--%>
-                            <%--<li><a href="#">Another action</a></li>--%>
-                            <%--<li><a href="#">Something else here</a></li>--%>
-                            <%--<li role="separator" class="divider"></li>--%>
-                            <%--<li><a href="#">Separated link</a></li>--%>
-                            <%--<li role="separator" class="divider"></li>--%>
-                            <%--<li><a href="#">One more separated link</a></li>--%>
-                            <%--</ul>--%>
-                            <%--</li>--%>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/admin/blogType/blogTypeManage.html">博客类别管理</a>
+                            </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="${pageContext.request.contextPath}/index.html">退出系统</a></li>
+                            <li><a href="${pageContext.request.contextPath}/user/logout.do">退出系统</a></li>
                         </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div><!-- /.container-fluid -->
+                    </div>
+                </div>
             </nav>
         </div>
     </div>
-    <jsp:include page="${targetPage}"></jsp:include>
+    <jsp:include page="${includePage}"></jsp:include>
 </div>
 </body>
 </html>

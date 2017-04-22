@@ -5,7 +5,7 @@
     <div id="overDiv" class="overlay" style="background-color: #87CEFA;opacity: 0.5;"></div>
     <div class="intrude-less" style="margin-bottom: 30px">
         <header id="header" class="inner">
-            <a href="/" class="profilepic">
+            <a href="${pageContext.request.contextPath}/login.jsp" class="profilepic">
                 <img src="${pageContext.request.contextPath}/static/userimages/${user.imageLocal}"
                      class="animated zoomIn">
             </a>

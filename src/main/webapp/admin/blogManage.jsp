@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript">
     function getBlogList(var1) {
@@ -46,15 +48,19 @@
         });
 //        alert(id_array);
         var idstr = id_array.join(',');
-        $.post("${pageContext.request.contextPath}/admin/blog/delete.do", {"selectId": idstr}, function (result) {
-            result = $.parseJSON(result);
-            if (result.success) {
-                alert("删除成功");
-                getBlogList(1);
-            } else {
-                alert("删除失败");
-            }
-        });
+        if (idstr == null || idstr == '') {
+            alert("请选择需要删除的博客");
+        } else {
+            $.post("${pageContext.request.contextPath}/admin/blog/delete.do", {"selectId": idstr}, function (result) {
+                result = $.parseJSON(result);
+                if (result.success) {
+                    alert("删除成功");
+                    location.reload([true]);
+                } else {
+                    alert("删除失败");
+                }
+            });
+        }
     }
 </script>
 
@@ -65,35 +71,56 @@
                 <h3 class="panel-title">博客管理面板</h3>
             </div>
             <div class="panel-body">
-                <button type="button" class="btn btn-primary">修改</button>
-                <button type="button" class="btn btn-danger" onclick="deleteBlog()">删除</button>
+                <form class="form-inline" action="${pageContext.request.contextPath}/admin/blog/blogManage.do"
+                      method="get">
+                    <button type="button" class="btn btn-danger" onclick="deleteBlog()">删除</button>
+                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/admin/blog/blogManage.html"
+                       role="button">全部博客</a>
+                    <div class="form-group" style="float: right">
+                        <input type="text" class="form-control" name="blogTitle" placeholder="请输入要搜索的标题">
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </div>
+                </form>
                 <div style="padding-top: 5px">
-                    <form id="form">
-                        <table class="table table-bordered" style="text-align: center">
-                            <thead>
+                    <table class="table table-bordered" style="text-align: center;">
+                        <thead>
                             <tr>
-                                <td style="width: 40px"><input type="checkbox" value=""></td>
-                                <td style="width: 60px">编号</td>
-                                <td>博客标题</td>
-                                <td style="width: 160px">发布日期</td>
-                                <td style="width: 160px">博客类别</td>
+                                <td style="width: 40px;display:table-cell; vertical-align:middle"><input type="checkbox"
+                                                                                                         value=""></td>
+                                <td style="width: 60px;display:table-cell; vertical-align:middle">编号</td>
+                                <td style="display:table-cell; vertical-align:middle">博客标题</td>
+                                <td style="width: 160px;display:table-cell; vertical-align:middle">发布日期</td>
+                                <td style="width: 160px;display:table-cell; vertical-align:middle">博客类别</td>
+                                <td style="width: 40px;display:table-cell; vertical-align:middle"></td>
                             </tr>
-                            </thead>
-                            <tbody id="tableBody">
-                            </tbody>
-                        </table>
-                    </form>
+                        </thead>
+                        <tbody id="tableBody">
+                        <c:forEach items="${blogList}" var="blog">
+                            <tr>
+                                <td style="display:table-cell; vertical-align:middle"><input name="selectId"
+                                                                                             type="checkbox"
+                                                                                             value="${blog.id}"></td>
+                                <td style="display:table-cell; vertical-align:middle">${blog.id}</td>
+                                <td style="display:table-cell; vertical-align:middle"><a
+                                        href="${pageContext.request.contextPath}/blog/articles/${blog.id}.html"
+                                        role="button">${blog.title}</a></td>
+                                <td style="display:table-cell; vertical-align:middle"><fmt:formatDate
+                                        value="${blog.releaseDate}" type="date" pattern="yyyy年MM月dd日"/></td>
+                                <td style="display:table-cell; vertical-align:middle">${blog.blogType.typeName}</td>
+                                <td style="display:table-cell; vertical-align:middle"><a class="btn btn-info"
+                                                                                         href="${pageContext.request.contextPath}/admin/blog/writeBlog.do?blogId=${blog.id}"
+                                                                                         role="button">修改</a></td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
 
                 <nav aria-label="Page navigation">
                     <ul class="pagination" id="nav">
-
+                        ${pageCode}
                     </ul>
                 </nav>
-                <script>
-                    getBlogList(1);
-                </script>
-
             </div>
         </div>
     </div>

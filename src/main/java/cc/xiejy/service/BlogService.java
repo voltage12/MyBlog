@@ -27,4 +27,6 @@ public interface BlogService {
     Integer add(Blog blog);
 
     Integer deleteBlogById(Integer id);
+
+    Integer getCountByTypeId(Integer typeId);
 }

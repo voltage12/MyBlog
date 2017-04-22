@@ -27,6 +27,9 @@
             <if test="typeId!=null and typeId!='' ">
                 and typeId=#{typeId}
             </if>
+            <if test="title!=null and title!='' ">
+                and title LIKE #{title}
+            </if>
             <if test="releaseDateStr!=null and releaseDateStr!='' ">
                 and DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}
             </if>
@@ -37,11 +40,18 @@
         </if>
     </select>
 
+    <select id="getCountByTypeId" parameterType="Integer" resultType="Integer">
+        SELECT COUNT(*) FROM t_blog WHERE typeId = #{typeId}
+    </select>
+
     <select id="getTotalCount" parameterType="Map" resultType="Integer">
         SELECT COUNT(*) FROM t_blog
         <where>
             <if test="typeId!=null and typeId!='' ">
                 and typeId=#{typeId}
+            </if>
+            <if test="title!=null and title!='' ">
+                and title LIKE #{title}
             </if>
             <if test="releaseDateStr!=null and releaseDateStr!='' ">
                 and DATE_FORMAT(releaseDate,'%Y年%m月')=#{releaseDateStr}

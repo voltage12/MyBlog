@@ -20,7 +20,7 @@
         } else if (content == null || content == '') {
             alert("请填写内容！");
         } else {
-            $.post("${pageContext.request.contextPath}/admin/blog/add.do", {
+            $.post("${pageContext.request.contextPath}/admin/blog/save.do", {
                 'title': title, 'blogType.id': blogTypeId,
                 'content': content, 'id': '${blog.id}', 'summary': UE.getEditor('editor').getContentTxt().substr(0, 150)
             }, function (result) {
@@ -45,11 +45,11 @@
     <div class="col-md-12">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Panel title</h3>
+                <h3 class="panel-title">编辑博客</h3>
             </div>
             <div class="panel-body">
                 <form>
-                    <input hidden="hidden" id="id" name="id" value="${blog.id}"/>
+                    <%--<input hidden="hidden" id="id" name="id" value="${blog.id}"/>--%>
                     <div class="form-group" style="width: 400px">
                         <label>博客标题</label>
                         <input id="title" name="title" type="text" class="form-control" placeholder="请输入博客标题"
