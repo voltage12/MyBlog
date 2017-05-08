@@ -13,14 +13,16 @@
         <result property="reply" column="reply"/>
         <result property="content" column="content"/>
         <result property="keyword" column="keyword"/>
-
+        <!-- 以外键typeId为参数，查询出BlogType实体 -->
         <association property="blogType" column="typeId" select="cc.xiejy.dao.BlogTypeDao.getBlogTypeById"/>
     </resultMap>
 
+    <!-- 以发布日期来分组，查询每个日期下的博客有多少，相应的Blog实体类中加入了一个blogCountForSameDate字段 -->
     <select id="getBlogListGroupByDate" resultMap="BlogResult">
         SELECT DATE_FORMAT(releaseDate,'%Y年%m月') AS releaseDateStr,COUNT(*) AS blogCountForSameDate FROM t_blog GROUP BY DATE_FORMAT(releaseDate,'%Y年%m月') ORDER BY DATE_FORMAT(releaseDate,'%Y年%m月') DESC
     </select>
 
+    <!-- 根据条件来返回博客列表，查询条件可能有typeId，title，releaseDateStr。并且根据需要来分页 -->
     <select id="getBlogList" parameterType="Map" resultMap="BlogResult">
         SELECT * FROM t_blog
         <where>
@@ -44,6 +46,7 @@
         SELECT COUNT(*) FROM t_blog WHERE typeId = #{typeId}
     </select>
 
+    <!-- 根据条件来返回博客数量，查询条件可能有typeId，title，releaseDateStr -->
     <select id="getTotalCount" parameterType="Map" resultType="Integer">
         SELECT COUNT(*) FROM t_blog
         <where>
@@ -81,7 +84,6 @@
             <if test="content!=null and content!=''">
                 content=#{content},
             </if>
-
             <if test="reply!=null">
                 reply=#{reply},
             </if>
@@ -89,15 +91,17 @@
         where id=#{id}
     </update>
 
+    <!-- 根据id来查询这篇博客的上一篇博客，就是查询出所有id比它小的博客，并按id来从大到小排序，然后取最上面一条记录就行 -->
     <select id="getLastBlog" parameterType="Integer" resultMap="BlogResult">
         SELECT * FROM t_blog WHERE id&lt;#{id} ORDER BY id DESC LIMIT 1;
     </select>
 
+    <!-- 根据id来查询这篇博客的下一篇博客 -->
     <select id="getNextBlog" parameterType="Integer" resultMap="BlogResult">
         SELECT * FROM t_blog WHERE id&gt;#{id} ORDER BY id ASC LIMIT 1;
     </select>
 
-    <insert id="add" parameterType="Blog">
+    <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="Blog">
         INSERT INTO t_blog VALUES (NULL,#{title},#{summary},now(),0,0,#{content},#{blogType.id},NULL)
     </insert>
 

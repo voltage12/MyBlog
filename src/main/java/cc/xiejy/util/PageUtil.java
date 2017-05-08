@@ -1,9 +1,9 @@
 package cc.xiejy.util;
 
 /**
- * 分页工具类
+ * 分页工具类，用来生成分页栏html代码
  *
- * @author Administrator
+ * @author Xie
  */
 public class PageUtil {
 

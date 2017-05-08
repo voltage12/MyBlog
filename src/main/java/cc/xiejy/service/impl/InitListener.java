@@ -6,6 +6,7 @@ import cc.xiejy.entity.User;
 import cc.xiejy.service.BlogService;
 import cc.xiejy.service.BlogTypeService;
 import cc.xiejy.service.UserService;
+import cc.xiejy.util.PropertiesUtil;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -39,6 +40,13 @@ public class InitListener implements ServletContextListener, ApplicationContextA
         BlogService blogService = (BlogService) applicationContext.getBean("blogService");
         List<Blog> blogListGroupByDate = blogService.getBlogListGroupByDate();
         application.setAttribute("blogListGroupByDate", blogListGroupByDate);
+
+        try {
+            PropertiesUtil propertiesUtil = new PropertiesUtil("my.properties");
+            application.setAttribute("indexPath", propertiesUtil.readValue("path"));
+        } catch (Exception e) {
+            application.setAttribute("indexPath", "D:/lucene");
+        }
     }
 
     @Override

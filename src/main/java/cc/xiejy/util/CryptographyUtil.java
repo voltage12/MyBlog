@@ -3,7 +3,9 @@ package cc.xiejy.util;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-
+/**
+ * 加密类，将密码的md5值计算出来
+ */
 public class CryptographyUtil {
 
 

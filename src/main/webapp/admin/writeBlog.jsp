@@ -12,6 +12,7 @@
         var title = $("#title").val();
         var blogTypeId = $("#blogTypeId").val();
         var content = UE.getEditor('editor').getContent();
+        var plainContent = UE.getEditor('editor').getContentTxt();
         var id = $("#id");
         if (title == null || title == '') {
             alert("请输入标题！");
@@ -21,8 +22,8 @@
             alert("请填写内容！");
         } else {
             $.post("${pageContext.request.contextPath}/admin/blog/save.do", {
-                'title': title, 'blogType.id': blogTypeId,
-                'content': content, 'id': '${blog.id}', 'summary': UE.getEditor('editor').getContentTxt().substr(0, 150)
+                'title': title, 'blogType.id': blogTypeId, 'plainContent': plainContent,
+                'content': content, 'id': '${blog.id}', 'summary': plainContent.substr(0, 150)
             }, function (result) {
                 if (result.success) {
                     alert("博客发布成功！");

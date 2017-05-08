@@ -3,6 +3,7 @@ package cc.xiejy.controller.admin;
 import cc.xiejy.entity.Blog;
 import cc.xiejy.entity.BlogType;
 import cc.xiejy.entity.PageBean;
+import cc.xiejy.lucene.BlogIndex;
 import cc.xiejy.service.BlogService;
 import cc.xiejy.service.BlogTypeService;
 import cc.xiejy.util.PageUtil;
@@ -35,6 +36,8 @@ public class BlogAdminController {
 
     @Resource
     private BlogTypeService blogTypeService;
+
+    private BlogIndex blogIndex = new BlogIndex();
 
     public void getBlogList(@RequestParam(value = "page", required = false) String page, HttpServletRequest request
             , HttpServletResponse response)
@@ -127,6 +130,8 @@ public class BlogAdminController {
             resultNum = blogService.update(blog);
         } else {
             resultNum = blogService.add(blog);
+            blogIndex.setPath((String) request.getSession().getServletContext().getAttribute("indexPath"));
+            blogIndex.addIndex(blog);
             List<BlogType> blogTypeList = blogTypeService.getBlogTypeList();
             request.getServletContext().setAttribute("blogTypeList", blogTypeList);
         }

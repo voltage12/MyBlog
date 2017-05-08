@@ -19,13 +19,28 @@ public class Blog {
     private String content;
     private String keyword;
 
+    private String plainContent;
     /**
      * 在表中对应的列为typeId，查询时调用BlogTypeDao的getBlogTypeById方法
      */
     private BlogType blogType;
 
+    //在查询出博客后，从它的内容中取出前三个img标签，当作缩略图放入这个字段
     private List<String> imageList = new LinkedList<>();
+
     private int blogCountForSameDate;
+
+    public String getPlainContent() {
+        return plainContent;
+    }
+
+    public void setPlainContent(String plainContent) {
+        this.plainContent = plainContent;
+    }
+
+    public void setBlogCountForSameDate(int blogCountForSameDate) {
+        this.blogCountForSameDate = blogCountForSameDate;
+    }
 
     public List<String> getImageList() {
         return imageList;

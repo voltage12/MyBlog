@@ -1,6 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+
+    function checkData() {
+        var q = document.getElementById("q").value.trim();
+        if (q == null || q == "") {
+            alert("请输入您要查询的关键字！");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+</script>
+
 <div id="top" class="col-md-3" style="padding-right: 0px;padding-left: 0px">
     <div id="overDiv" class="overlay" style="background-color: #87CEFA;opacity: 0.5;"></div>
     <div class="intrude-less" style="margin-bottom: 30px">
@@ -33,7 +47,13 @@
         </h1>
         <p style="font-size: 18px">${user.sign}</p>
     </div>
-    <div style="margin-top: 80px">
+    <div class="form-inline" style="margin-left: 11%;margin-right: 11%;">
+        <form method="post" action="${pageContext.request.contextPath}/blog/search.do" onsubmit="return checkData()">
+            <input type="text" class="form-control" placeholder="请输入要查询的关键字..." name="q" id="q">
+            <button type="submit" class="btn btn-default">搜索</button>
+        </form>
+    </div>
+    <div style="margin-top: 40px">
         <div class="data_list">
             <div class="data_list_title">
                 <img src="${pageContext.request.contextPath}/static/images/byType_icon.png"/>
