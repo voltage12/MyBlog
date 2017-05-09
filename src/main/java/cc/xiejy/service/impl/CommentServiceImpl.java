@@ -32,6 +32,21 @@ public class CommentServiceImpl implements CommentService {
         return commentDao.add(comment);
     }
 
+    @Override
+    public Integer getTotalCount(Map<String, Object> map) {
+        return commentDao.getTotalCount(map);
+    }
+
+    @Override
+    public Integer update(Comment comment) {
+        return commentDao.update(comment);
+    }
+
+    @Override
+    public Integer delete(Integer id) {
+        return commentDao.delete(id);
+    }
+
     //public static void main(String[] args){
     //    ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
     //    CommentService commentServeice = (CommentService) applicationContext.getBean("commentService");

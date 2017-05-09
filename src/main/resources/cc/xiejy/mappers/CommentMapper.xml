@@ -24,9 +24,29 @@
             </if>
         </where>
         ORDER BY commentDate
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <select id="getTotalCount" parameterType="Map" resultType="Integer">
+        SELECT COUNT(*) FROM t_comment
+        <where>
+            <if test="state!=null">
+                and state=#{state}
+            </if>
+        </where>
     </select>
 
     <insert id="add" parameterType="Comment">
         INSERT INTO t_comment VALUES(NULL ,#{userIp},#{content},now(),0,#{blog.id})
     </insert>
+
+    <update id="update" parameterType="Comment">
+        UPDATE t_comment SET state=#{state} where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM t_comment WHERE id=#{id}
+    </delete>
 </mapper> 

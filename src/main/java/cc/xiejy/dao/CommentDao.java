@@ -13,4 +13,10 @@ public interface CommentDao {
     List<Comment> getCommentList(Map<String, Object> map);
 
     int add(Comment comment);
+
+    Integer getTotalCount(Map<String, Object> map);
+
+    Integer update(Comment comment);
+
+    Integer delete(Integer id);
 }

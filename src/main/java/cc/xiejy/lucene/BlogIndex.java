@@ -61,6 +61,36 @@ public class BlogIndex {
     }
 
     /**
+     * 更新博客索引
+     * @param blog
+     * @throws Exception
+     */
+    public void updateIndex(Blog blog) throws Exception {
+        IndexWriter writer = getWriter();
+        Document doc = new Document();
+        doc.add(new StringField("id", String.valueOf(blog.getId()), Field.Store.YES));
+        doc.add(new TextField("title", blog.getTitle(), Field.Store.YES));
+        doc.add(new StringField("releaseDate", DateUtil.formatDate(new Date(), "yyyy-MM-dd"), Field.Store.YES));
+        doc.add(new TextField("content", blog.getPlainContent(), Field.Store.YES));
+        writer.updateDocument(new Term("id", String.valueOf(blog.getId())), doc);
+        writer.close();
+    }
+
+    /**
+     * 删除指定博客的索引
+     *
+     * @param blogId
+     * @throws Exception
+     */
+    public void deleteIndex(String blogId) throws Exception {
+        IndexWriter writer = getWriter();
+        writer.deleteDocuments(new Term("id", blogId));
+        writer.forceMergeDeletes(); // 强制删除
+        writer.commit();
+        writer.close();
+    }
+
+    /**
      * 查询博客信息
      *
      * @param q

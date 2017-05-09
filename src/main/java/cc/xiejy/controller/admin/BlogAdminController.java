@@ -128,6 +128,7 @@ public class BlogAdminController {
         JSONObject result = new JSONObject();
         if (blog.getId() != null) {
             resultNum = blogService.update(blog);
+            blogIndex.updateIndex(blog);
         } else {
             resultNum = blogService.add(blog);
             blogIndex.setPath((String) request.getSession().getServletContext().getAttribute("indexPath"));
@@ -151,10 +152,10 @@ public class BlogAdminController {
         if (selectIds == null || StringUtil.isEmpty(selectId)) {
             result.put("success", false);
         } else {
-            int resultNum = 0;
             result.put("success", true);
             for (String id : selectIds) {
-                resultNum = resultNum + blogService.deleteBlogById(Integer.parseInt(id));
+                blogService.deleteBlogById(Integer.parseInt(id));
+                blogIndex.deleteIndex(id);
             }
             List<BlogType> blogTypeList = blogTypeService.getBlogTypeList();
             request.getServletContext().setAttribute("blogTypeList", blogTypeList);
