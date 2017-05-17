@@ -15,8 +15,9 @@
         <scan>
             <a href="https://github.com/xiejiny/MyBlog" data-toggle="modal" data-target="#myModa2">关于本站</a>
             <%-- 下面是模态对话框 --%>
-            <div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-                <div class="modal-dialog" role="document">
+            <div class="modal fade bs-example-modal-lg" id="myModa2" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel2">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="margin-bottom: 25px">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span

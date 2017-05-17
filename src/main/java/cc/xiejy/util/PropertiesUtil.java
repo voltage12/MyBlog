@@ -3,7 +3,9 @@ package cc.xiejy.util;
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * 读取配置文件工具类
+ */
 public class PropertiesUtil {
     //配置文件的路径
     private String configPath = null;
@@ -27,7 +29,6 @@ public class PropertiesUtil {
 
     /**
      * 根据key值读取配置的值
-     *
      * @param key key值
      * @return key 键对应的值
      * @throws IOException
@@ -38,7 +39,6 @@ public class PropertiesUtil {
 
     /**
      * 读取properties的全部信息
-     *
      * @throws FileNotFoundException 配置文件没有找到
      * @throws IOException           关闭资源文件，或者加载配置文件错误
      */
@@ -56,7 +56,6 @@ public class PropertiesUtil {
 
     /**
      * 设置某个key的值,并保存至文件。
-     *
      * @param key key值
      * @return key 键对应的值
      * @throws IOException
@@ -78,14 +77,4 @@ public class PropertiesUtil {
         fos.close();
     }
 
-    //public static void main(String[] args) {
-    //    PropertiesUtil p;
-    //    try {
-    //        p = new PropertiesUtil();
-    //        System.out.println(p.readAllProperties());
-    //    } catch (IOException e) {
-    //        // TODO Auto-generated catch block
-    //        e.printStackTrace();
-    //    }
-    //}
 }

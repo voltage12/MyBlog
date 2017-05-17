@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by xie on 2017/4/11 0011.
+ * 主页博客列表展示Controller
  */
 @Controller
 @RequestMapping("/")
@@ -30,13 +30,18 @@ public class IndexController {
     @Resource
     private BlogService blogService;
 
+    /**
+     * 显示博客列表
+     *
+     * @throws Exception
+     */
     @RequestMapping("/index")
     public ModelAndView index(@RequestParam(value = "page", required = false) String page,
                               @RequestParam(value = "typeId", required = false) String typeId,
                               @RequestParam(value = "releaseDateStr", required = false) String releaseDateStr,
                               HttpServletRequest request) throws Exception {
         ModelAndView mav = new ModelAndView();
-        //生成当前页的PageBean
+        //如果没有当前页参数则默认是第一页
         if (StringUtil.isEmpty(page)) {
             page = "1";
         }
@@ -57,18 +62,18 @@ public class IndexController {
         if (StringUtil.isNotEmpty(releaseDateStr)) {
             param.append("releaseDateStr=" + releaseDateStr + "&");
         }
-        //生成分页导航栏中的每一项
+        //生成分页导航栏的html代码
         mav.addObject("pageCode", PageUtil.genPagination(request.getContextPath() + "/index.html", blogService.getTotalCount(map), Integer.parseInt(page), 5, param.toString()));
         //为每一个blog设置缩略图
         for (Blog blog : blogList) {
             List<String> imageList = blog.getImageList();
             String blogContent = blog.getContent();
+            //解析博客内容，找出其中所有的图像标签，取前三个作为缩略图
             Document document = Jsoup.parse(blogContent);
             Elements jpgs = document.select("img[src$=.jpg]");
             for (int i = 0; i < jpgs.size(); i++) {
                 Element jpg = jpgs.get(i);
                 imageList.add(jpg.toString());
-                //imageList.add(jpg.toString().replaceFirst("/", request.getContextPath() + "/"));
                 if (i == 2) {
                     break;
                 }

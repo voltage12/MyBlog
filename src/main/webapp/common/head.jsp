@@ -25,20 +25,21 @@
             </a>
         </header>
         <h1>
-            <a href="/" style="font-size: 20px;font-weight: bold" data-toggle="modal" data-target="#myModa2">
+            <a href="/" style="font-size: 20px;font-weight: bold" data-toggle="modal" data-target="#myModal">
                 ${user.nickName}
             </a>
             <%-- 下面是模态对话框 --%>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
+            <div class="modal fade bs-example-modal-lg" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header" style="margin-bottom: 25px">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel" style="text-align: center;">个人介绍</h4>
                         </div>
-                        <div class="modal-body" style="font-size: 17px">
-                            ${user.introduce}
+                        <div class="modal-body" style="font-size: 17px;text-align: left">
+                            &nbsp;&nbsp;${user.introduce}
                         </div>
                     </div>
                 </div>
@@ -53,7 +54,7 @@
             <button type="submit" class="btn btn-default">搜索</button>
         </form>
     </div>
-    <div style="margin-top: 40px">
+    <div style="margin-top: 30px">
         <div class="data_list">
             <div class="data_list_title">
                 <img src="${pageContext.request.contextPath}/static/images/byType_icon.png"/>

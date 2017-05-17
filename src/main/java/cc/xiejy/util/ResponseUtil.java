@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 /**
- * 用来返回json字符串的工具类
+ * 返回json字符串的工具类
  */
 public class ResponseUtil {
 

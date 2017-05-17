@@ -26,7 +26,7 @@
     <div class="row">
         <jsp:include page="common/head.jsp"></jsp:include>
         <div class="col-md-9" style="padding-right: 0px;padding-left: 0px;background-color: #E5E5E5">
-            <%--<jsp:include page="blog/${mainPage}"></jsp:include>--%>
+
             <jsp:include page="${mainPage}"></jsp:include>
 
             <jsp:include page="common/foot.jsp"></jsp:include>

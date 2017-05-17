@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 /**
- * 加密类，将密码的md5值计算出来
+ * 加密类，计算密码的md5值
  */
 public class CryptographyUtil {
 
@@ -22,11 +22,5 @@ public class CryptographyUtil {
             e.printStackTrace();
             return "error";
         }
-    }
-
-    public static void main(String[] args) {
-        String password = "xjy741XJY";
-
-        System.out.println("md5加密" + CryptographyUtil.md5(password));
     }
 }

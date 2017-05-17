@@ -3,7 +3,9 @@ package cc.xiejy.util;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * 日期信息格式化类
+ */
 public class DateUtil {
 
     public static String formatDate(Date date, String format) {

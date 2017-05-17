@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by xie on 2017/4/9 0009.
+ * 用户登入Controller
  */
 @Controller
 @RequestMapping("/user")

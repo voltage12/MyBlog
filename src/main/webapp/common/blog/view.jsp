@@ -20,21 +20,29 @@
 
     function submitData() {
         var content = $("#content").val();
+        var imageCode = $("#imageCode").val();
         if (content == null || content == "") {
             alert("请输入评论内容！");
+        } else if (imageCode == null || imageCode == "") {
+            alert("请填写验证码！");
         } else {
             $.post("${pageContext.request.contextPath}/comment/add.do", {
                 "content": content,
+                'imageCode': imageCode,
                 'blogId': '${blog.id}'
             }, function (result) {
                 if (result.success) {
-                    alert("评论已提成成功，刷新后显示！");
+                    alert("评论已提交成功，审核通过后显示！");
+                    location.reload([true]);
                 } else {
                     alert(result.errorInfo);
                 }
             }, "json");
-            $("#content").val("");
         }
+    }
+
+    function loadimage() {
+        document.getElementById("randImage").src = "${pageContext.request.contextPath}/image.jsp?" + Math.random();
     }
 </script>
 
@@ -97,13 +105,20 @@
     <div class="data_list_title">
         发表评论
     </div>
-
     <div class="publish_comment">
         <div>
             <textarea style="width: 100%" rows="3" id="content" name="content" placeholder="写下你的评论..."></textarea>
         </div>
         <div class="publishButton">
             <button class="btn btn-primary" type="button" onclick="submitData()">发表评论</button>
+            验证码：<input type="text" value="" name="imageCode" id="imageCode" size="10"/>&nbsp;<img onclick="loadimage();"
+                                                                                                  title="换一张试试"
+                                                                                                  name="randImage"
+                                                                                                  id="randImage"
+                                                                                                  src="${pageContext.request.contextPath}/image.jsp"
+                                                                                                  width="60" height="20"
+                                                                                                  border="1"
+                                                                                                  align="absmiddle">
         </div>
     </div>
 </div>

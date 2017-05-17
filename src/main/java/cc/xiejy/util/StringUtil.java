@@ -19,7 +19,6 @@ public class StringUtil {
 
     /**
      * 在mysql查询中用到，将字符串模糊化查询
-     *
      * @param str
      * @return
      */

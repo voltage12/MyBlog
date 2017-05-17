@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by xie on 2017/4/12 0012.
+ * 博客内容展示Controller
  */
 @Controller
 @RequestMapping("/blog")
@@ -40,18 +40,28 @@ public class BlogController {
         this.blogService = blogService;
     }
 
+    /**
+     * 获取博客内容
+     *
+     * @param id
+     * @param request
+     * @return
+     */
     @RequestMapping("/articles/{id}")
     public ModelAndView details(@PathVariable("id") Integer id, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
+
         Blog blog = blogService.getById(id);
         blog.setClick(blog.getClick() + 1);
         blogService.update(blog);
-        mav.addObject("lastBlog", blogService.getLastBlog(blog.getId()));
-        mav.addObject("nextBlog", blogService.getNextBlog(blog.getId()));
+        //搜索并添加评论信息
         Map<String, Object> map = new HashedMap();
         map.put("blogId", blog.getId());
         map.put("state", 1);
         mav.addObject("commentList", commentService.getCommentList(map));
+
+        mav.addObject("lastBlog", blogService.getLastBlog(blog.getId()));
+        mav.addObject("nextBlog", blogService.getNextBlog(blog.getId()));
         mav.addObject("blog", blog);
         mav.addObject("mainPage", "common/blog/view.jsp");
         mav.addObject("pageTitle", blog.getTitle());
@@ -61,7 +71,6 @@ public class BlogController {
 
     /**
      * 根据关键字查询相关博客信息
-     *
      * @param q
      * @return
      * @throws Exception
@@ -88,8 +97,7 @@ public class BlogController {
     }
 
     /**
-     * 获取上一页，下一页代码
-     *
+     * 获取搜索结果页面中上一页，下一页代码
      * @param page
      * @param totalNum
      * @param q

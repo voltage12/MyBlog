@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by xie on 2017/4/14 0014.
+ * 过滤器，拦截所有访问后台管理的请求
  */
 public class AdminFilter implements Filter {
 
