@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 
 /**
- * Created by xie on 2017/4/16 0016.
+ * 显示默认页面
  */
 @Controller
 @RequestMapping("/admin")
@@ -19,7 +19,6 @@ public class IndexAdminController {
 
     @RequestMapping("/index")
     public String index(Model model) {
-
         model.addAttribute("includePage", "default.jsp");
         return "admin/index";
     }

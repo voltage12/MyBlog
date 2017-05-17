@@ -29,18 +29,21 @@ public class InitListener implements ServletContextListener, ApplicationContextA
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext application = servletContextEvent.getServletContext();
         UserService userService = (UserService) applicationContext.getBean("userService");
+        BlogTypeService blogTypeService = (BlogTypeService) applicationContext.getBean("blogTypeService");
+        BlogService blogService = (BlogService) applicationContext.getBean("blogService");
+
+        //分别往缓存中加入用户信息，按类别分类的博客信息和按日期分类的博客信息
         User user = userService.getByUserName("xiejy");
         user.setPassword(null);
         application.setAttribute("user", user);
 
-        BlogTypeService blogTypeService = (BlogTypeService) applicationContext.getBean("blogTypeService");
         List<BlogType> blogTypeList = blogTypeService.getBlogTypeList();
         application.setAttribute("blogTypeList", blogTypeList);
 
-        BlogService blogService = (BlogService) applicationContext.getBean("blogService");
         List<Blog> blogListGroupByDate = blogService.getBlogListGroupByDate();
         application.setAttribute("blogListGroupByDate", blogListGroupByDate);
 
+        //读取lucene设置文件，如果没有那么默认输出索引至默认路径
         try {
             PropertiesUtil propertiesUtil = new PropertiesUtil("my.properties");
             application.setAttribute("indexPath", propertiesUtil.readValue("path"));

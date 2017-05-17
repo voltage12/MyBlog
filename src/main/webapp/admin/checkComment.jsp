@@ -7,9 +7,8 @@
     function pass(var1) {
         var id_array = [];
         $('input[name="selectId"]:checked').each(function () {
-            id_array.push($(this).val());//向数组中添加元素
+            id_array.push($(this).val());
         });
-//        alert(id_array);
         var idstr = id_array.join(',');
         if (idstr == null || idstr == '') {
             alert("请选择需要删除的博客");
@@ -29,6 +28,13 @@
         }
     }
 
+    function selectAll() {
+        if ($("#bt").is(":checked")) {
+            $('input[name="selectId"]').prop("checked", true);
+        } else {
+            $('input[name="selectId"]').prop("checked", false);
+        }
+    }
 </script>
 
 <div class="row">
@@ -47,8 +53,9 @@
                     <table class="table table-bordered" style="text-align: center;">
                         <thead>
                         <tr>
-                            <td style="width: 40px;display:table-cell; vertical-align:middle"><input type="checkbox"
-                                                                                                     value=""></td>
+                            <td style="width: 40px;display:table-cell; vertical-align:middle">
+                                <input type="checkbox" id="bt" onclick="selectAll()"/>
+                            </td>
                             <td style="width: 60px;display:table-cell; vertical-align:middle">编号</td>
                             <td style="width: 100px;display:table-cell; vertical-align:middle">用户IP</td>
                             <td style="display:table-cell; vertical-align:middle">评论内容</td>

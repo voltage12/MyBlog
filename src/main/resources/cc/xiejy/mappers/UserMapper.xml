@@ -17,4 +17,29 @@
     <select id="getByUserName" parameterType="String" resultMap="UserResult">
         SELECT  * FROM t_user where userName=#{userName}
     </select>
+
+    <update id="update" parameterType="User">
+        UPDATE t_user
+        <set>
+            <if test="userName!=null and userName!=''">
+                userName=#{userName},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="introduce!=null and introduce!=''">
+                introduce=#{introduce},
+            </if>
+            <if test="nickName!=null and nickName!=''">
+                nickName=#{nickName},
+            </if>
+            <if test="sign!=null and sign!=''">
+                sign=#{sign},
+            </if>
+            <if test="imageLocal!=null and imageLocal!=''">
+                imageLocal=#{imageLocal},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
 </mapper> 

@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by xie on 2017/4/18 0018.
+ * 博客类别管理Controller
  */
 @Controller
 @RequestMapping("admin/blogType")
@@ -29,23 +29,31 @@ public class BlogTypeAdminController {
     @Resource
     private BlogService blogService;
 
+    /**
+     * 转到博客类别管理页面
+     *
+     * @return
+     */
     @RequestMapping("/blogTypeManage")
     public ModelAndView blogTypeManage() {
         ModelAndView mav = new ModelAndView();
 
-        //List<BlogType> blogTypeList = blogTypeService.getList(null);
-
-        //mav.addObject("blogTypeList", blogTypeList);
+        mav.addObject("pageTitle", "后台管理-博客类别管理");
         mav.addObject("includePage", "blogTypeManage.jsp");
         mav.setViewName("admin/index");
         return mav;
     }
 
+    /**
+     * 修改或添加博客类别
+     * @throws Exception
+     */
     @RequestMapping("/save")
     public void save(BlogType blogType, HttpServletResponse response,
                      HttpServletRequest request) throws Exception {
         int resultNum;
         JSONObject result = new JSONObject();
+        //判断是修改还是添加博客类别
         if (blogType.getId() != null) {
             resultNum = blogTypeService.update(blogType);
         } else {
@@ -53,6 +61,7 @@ public class BlogTypeAdminController {
         }
         if (resultNum > 0) {
             result.put("success", true);
+            //更新系统中的博客类别列表缓存
             List<BlogType> blogTypeList = blogTypeService.getBlogTypeList();
             request.getServletContext().setAttribute("blogTypeList", blogTypeList);
         } else {
@@ -61,6 +70,10 @@ public class BlogTypeAdminController {
         ResponseUtil.write(response, result.toString());
     }
 
+    /**
+     * 获取博客类别信息
+     * @throws Exception
+     */
     @RequestMapping("/getInfo")
     public void getInfo(@RequestParam(value = "typeId") String typeId, HttpServletResponse response) throws Exception {
         BlogType blogType = blogTypeService.getBlogTypeById(Integer.parseInt(typeId));
@@ -68,10 +81,15 @@ public class BlogTypeAdminController {
         ResponseUtil.write(response, result.toString());
     }
 
+    /**
+     * 删除博客类别
+     * @throws Exception
+     */
     @RequestMapping("/delete")
     public void delete(@RequestParam(value = "typeId") String typeId, HttpServletResponse response,
                        HttpServletRequest request) throws Exception {
         JSONObject result = new JSONObject();
+        //如果此类别下还有博客则删除失败
         if (blogService.getCountByTypeId(Integer.parseInt(typeId)) == 0) {
             int resultNum = blogTypeService.delete(Integer.parseInt(typeId));
             if (resultNum > 0) {

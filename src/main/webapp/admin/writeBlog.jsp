@@ -3,7 +3,7 @@
 
 <script type="text/javascript" charset="utf-8"
         src="${pageContext.request.contextPath}/static/ueditor/ueditor.config.js"></script>
-<!-- 编辑器源码文件 -->
+<!-- ueditor编辑器源码文件 -->
 <script type="text/javascript" charset="utf-8"
         src="${pageContext.request.contextPath}/static/ueditor/ueditor.all.min.js"></script>
 
@@ -50,7 +50,7 @@
             </div>
             <div class="panel-body">
                 <form>
-                    <%--<input hidden="hidden" id="id" name="id" value="${blog.id}"/>--%>
+
                     <div class="form-group" style="width: 400px">
                         <label>博客标题</label>
                         <input id="title" name="title" type="text" class="form-control" placeholder="请输入博客标题"

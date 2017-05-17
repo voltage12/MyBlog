@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>--%>
 
 <script type="text/javascript">
 
@@ -135,9 +134,9 @@
                                         onclick="change()">修改
                                 </button>
                             </div>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
+                        </div>
+                    </div>
+                </div>
                 <%-- 上面是添加类别的模态对话框 --%>
                 <button class="hidden" id="bt" data-toggle="modal" data-target="#myModal1">
                     添加类别

@@ -8,4 +8,6 @@ import cc.xiejy.entity.User;
  */
 public interface UserDao {
     User getByUserName(String userName);
+
+    Integer update(User user);
 }

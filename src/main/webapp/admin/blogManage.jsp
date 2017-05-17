@@ -3,50 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript">
-    function getBlogList(var1) {
-        $.post("${pageContext.request.contextPath}/admin/blog/getList.do", {"page": var1}, function (result) {
-            $("#tableBody").empty();
-            result = $.parseJSON(result);
-            for (var i = 1, l = result.length; i < l; i++) {
-                var tr = document.createElement("tr");
-                tr.id = "tr" + i;
-                var td1 = document.createElement("td");
-                var input1 = document.createElement("input");
-//                input1.id = "selectId";
-                input1.setAttribute("type", "checkbox");
-                input1.setAttribute("value", result[i].id);
-                input1.setAttribute("name", "selectId");
-                td1.appendChild(input1);
-                var td2 = document.createElement("td");
-                td2.innerText = result[i].id;
-                var td3 = document.createElement("td");
-                var target = document.createElement("a");
-                target.innerText = result[i].title;
-                target.setAttribute("href", "${pageContext.request.contextPath}/admin/index.html?targetPage=writeBlog&blogId=" + result[i].id);
-                td3.appendChild(target);
-                var td4 = document.createElement("td");
-                td4.innerText = result[i].releaseDate;
-                var td5 = document.createElement("td");
-                td5.innerText = result[i].blogTypeName;
-                tr.appendChild(td1);
-                tr.appendChild(td2);
-                tr.appendChild(td3);
-                tr.appendChild(td4);
-                tr.appendChild(td5);
-                $("#tableBody").append(tr);
-            }
-            var pageCode = $(result[0].pageCode);
-            $("#nav").empty();
-            $("#nav").append(pageCode);
-        });
+    function selectAll() {
+        if ($("#bt").is(":checked")) {
+            $('input[name="selectId"]').prop("checked", true);
+        } else {
+            $('input[name="selectId"]').prop("checked", false);
+        }
     }
 
     function deleteBlog() {
         var id_array = [];
         $('input[name="selectId"]:checked').each(function () {
-            id_array.push($(this).val());//向数组中添加元素
+            //获取所有备选的博客id
+            id_array.push($(this).val());
         });
-//        alert(id_array);
+        //把id拼接起来，中间以逗号隔开
         var idstr = id_array.join(',');
         if (idstr == null || idstr == '') {
             alert("请选择需要删除的博客");
@@ -85,8 +56,9 @@
                     <table class="table table-bordered" style="text-align: center;">
                         <thead>
                             <tr>
-                                <td style="width: 40px;display:table-cell; vertical-align:middle"><input type="checkbox"
-                                                                                                         value=""></td>
+                                <td style="width: 40px;display:table-cell; vertical-align:middle">
+                                    <input id="bt" onclick="selectAll()" type="checkbox">
+                                </td>
                                 <td style="width: 60px;display:table-cell; vertical-align:middle">编号</td>
                                 <td style="display:table-cell; vertical-align:middle">博客标题</td>
                                 <td style="width: 160px;display:table-cell; vertical-align:middle">发布日期</td>
@@ -97,19 +69,22 @@
                         <tbody id="tableBody">
                         <c:forEach items="${blogList}" var="blog">
                             <tr>
-                                <td style="display:table-cell; vertical-align:middle"><input name="selectId"
-                                                                                             type="checkbox"
-                                                                                             value="${blog.id}"></td>
+                                <td style="display:table-cell; vertical-align:middle">
+                                    <input name="selectId" type="checkbox" value="${blog.id}">
+                                </td>
                                 <td style="display:table-cell; vertical-align:middle">${blog.id}</td>
-                                <td style="display:table-cell; vertical-align:middle"><a
-                                        href="${pageContext.request.contextPath}/blog/articles/${blog.id}.html"
-                                        role="button">${blog.title}</a></td>
+                                <td style="display:table-cell; vertical-align:middle">
+                                    <a href="${pageContext.request.contextPath}/blog/articles/${blog.id}.html"
+                                       role="button">${blog.title}</a>
+                                </td>
                                 <td style="display:table-cell; vertical-align:middle"><fmt:formatDate
                                         value="${blog.releaseDate}" type="date" pattern="yyyy年MM月dd日"/></td>
                                 <td style="display:table-cell; vertical-align:middle">${blog.blogType.typeName}</td>
-                                <td style="display:table-cell; vertical-align:middle"><a class="btn btn-info"
-                                                                                         href="${pageContext.request.contextPath}/admin/blog/writeBlog.do?blogId=${blog.id}"
-                                                                                         role="button">修改</a></td>
+                                <td style="display:table-cell; vertical-align:middle">
+                                    <a class="btn btn-info"
+                                       href="${pageContext.request.contextPath}/admin/blog/writeBlog.do?blogId=${blog.id}"
+                                       role="button">修改</a>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

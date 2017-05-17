@@ -7,4 +7,6 @@ import cc.xiejy.entity.User;
  */
 public interface UserService {
     User getByUserName(String userName);
+
+    Integer update(User user);
 }

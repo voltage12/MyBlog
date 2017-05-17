@@ -5,14 +5,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>博客系统后台页面</title>
+    <title>${pageTitle}</title>
+
     <%-- 加入bootstrap和jquery库 --%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap3/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bootstrap3/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/mycss.css">
     <script src="${pageContext.request.contextPath}/static/bootstrap3/js/jquery-1.11.2.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/bootstrap3/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 <div class="container">
@@ -27,7 +27,6 @@
         <div class="col-md-12">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                                 data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -38,8 +37,6 @@
                         </button>
                         <a class="navbar-brand" href="${pageContext.request.contextPath}/admin/index.html">导航栏</a>
                     </div>
-
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
@@ -66,6 +63,18 @@
                                     </li>
                                     <li>
                                         <a href="${pageContext.request.contextPath}/admin/comment/commentManage.html">评论信息管理</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">用户管理<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/admin/user/infoManage.html">用户信息管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="${pageContext.request.contextPath}/admin/user/passwdManage.html">密码修改</a>
                                     </li>
                                 </ul>
                             </li>
